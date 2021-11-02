@@ -4,10 +4,12 @@ Reverse engineering [AWS Systems Manager Patch Manager](https://docs.aws.amazon.
 
 ## PatchLinux.sh
 
-TL;DR:
+TLDR:
 
-- Scan compares the baseline to installed packages and generates an inventory
-- Install runs `apt upgrade` for all the packages in the baseline and generates an inventory
+- SCAN: compare the baseline to installed packages and generate an inventory
+- INSTALL: run `apt upgrade` for all packages in the baseline and generate an inventory
+
+In detail:
 
 1. Check prereqs are installed eg: python, apt
 1. Create and chdir to _/var/log/amazon/ssm/patch-baseline-operations/_
