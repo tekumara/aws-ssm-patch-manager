@@ -22,9 +22,9 @@ common_startup_entrance.execute("os_selector", "PatchLinux", "{{SnapshotId}}",\
 
 1. Fetch snapshot_info for the instance using [get_deployable_patch_snapshot_for_instance](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetDeployablePatchSnapshotForInstance.html)
 1. [Download](patch-baseline-operations/common_os_selector_methods.py#L282) the [patch baseline snapshot](patch-baseline-snapshot.json). The contents is similar to the output of the [get-patch-baseline](https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-cli-commands.html#patch-manager-cli-commands-get-patch-baseline) cli command.
-1. Save patch state (the install state of packages in the baseline) to _/var/log/amazon/ssm/patch-configuration/patch-states-configuration.json_
 
 .....TODO....
 
+1. Save patch state (the install state of packages in the baseline) to _/var/log/amazon/ssm/patch-configuration/patch-states-configuration.json_ ([example](patch-states-configuration.json))
 1. Generate a patch compliance summary ([example](patch-inventory-from-last-operation.json)).
 1. Upload the patch compliance summary using [put_inventory](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_PutInventory.html) and saves it to _/var/log/amazon/ssm/patch-configuration/patch-inventory-from-last-operation.json_
