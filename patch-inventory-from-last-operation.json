@@ -1,0 +1,28 @@
+{
+    "TypeName": "AWS:PatchSummary",
+    "SchemaVersion": "1.0",
+    "ContentHash": "c2786b90098d0ab8df34bdc8a9f3d2402695f385de522f6ca703ecb3a5d6e3ad",
+    "CaptureTime": "2021-11-02T04:17:28Z",
+    "Content": [
+        {
+            "BaselineId": "pb-0c7e89f711c3095f4",
+            "PatchGroup": "",
+            "SnapshotId": "7c64b8b8-1274-47db-8f0d-e26f6c0aae7b",
+            "ExecutionId": "a7f84bef-2aa8-4853-a28f-e6e0108c8285",
+            "InstalledCount": "198",
+            "InstalledOtherCount": "1077",
+            "InstalledRejectedCount": "0",
+            "InstalledPendingRebootCount": "0",
+            "NotApplicableCount": "10254",
+            "MissingCount": "0",
+            "FailedCount": "0",
+            "CriticalNonCompliantCount": "0",
+            "SecurityNonCompliantCount": "0",
+            "OtherNonCompliantCount": "0",
+            "OperationType": "Install",
+            "OperationStartTime": "2021-11-02T04:15:51Z",
+            "OperationEndTime": "2021-11-02T04:17:28Z",
+            "RebootOption": "RebootIfNeeded"
+        }
+    ]
+}
