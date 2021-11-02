@@ -25,7 +25,7 @@ common_startup_entrance.execute("os_selector", "PatchLinux", "{{SnapshotId}}",\
 1. [Save snapshot](patch-baseline-operations/common_os_selector_methods.py#L336) to [snapshot.json](patch-baseline-operations/snapshot.json).
 1. [main_entrance.py](patch-baseline-operations/main_entrance.py) is launched and passed [snapshot.json](patch-baseline-operations/snapshot.json).
 1. [Identify the OS](patch-baseline-operations/main_entrance.py#L251) and call relevant package manager entrance file, eg: for Ubuntu import [apt_entrance.py](patch-baseline-operations/apt_entrance.py) and run `execute` passing the snapshot object.
-1. The package manager [scans or installs all the approved patchs](patch-baseline-operations/patch_apt/apt_operations.py#L27). A scan generates an inventory. An install runs apt upgrade and then generates an inventory.
+1. The package manager [scans or installs all the approved patchs](patch-baseline-operations/patch_apt/apt_operations.py#L27). A scan generates an inventory. An install runs apt upgrade (in the case of Ubuntu) and then generates an inventory.
 1. [Generate](patch-baseline-operations/main_entrance.py#L266) a patch compliance summary ([example](patch-inventory-from-last-operation.json)) and save the patch state (the install state of packages in the baseline) to _/var/log/amazon/ssm/patch-configuration/patch-states-configuration.json_ ([example](patch-states-configuration.json))
 1. Saves it to _/var/log/amazon/ssm/patch-configuration/patch-inventory-from-last-operation.json_
 1. Upload the patch compliance summary using [put_inventory](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_PutInventory.html) if the hash has changed.
