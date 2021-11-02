@@ -1,0 +1,60 @@
+{
+    "patchBaseline": {
+        "accountId": "075727635805",
+        "baselineId": "pb-0c7e89f711c3095f4",
+        "name": "AWS-UbuntuDefaultPatchBaseline",
+        "globalFilters": {
+            "filters": [
+                {
+                    "key": "PRODUCT",
+                    "values": [
+                        "*"
+                    ]
+                }
+            ]
+        },
+        "approvalRules": {
+            "rules": [
+                {
+                    "filterGroup": {
+                        "filters": [
+                            {
+                                "key": "PRIORITY",
+                                "values": [
+                                    "Required",
+                                    "Important",
+                                    "Standard",
+                                    "Optional",
+                                    "Extra"
+                                ]
+                            }
+                        ]
+                    },
+                    "complianceLevel": "UNSPECIFIED",
+                    "enableNonSecurity": false,
+                    "approveAfterDays": 7,
+                    "approveUntilDate": null
+                }
+            ]
+        },
+        "approvedPatches": [],
+        "approvedPatchesComplianceLevel": "UNSPECIFIED",
+        "approvedPatchesEnableNonSecurity": false,
+        "rejectedPatches": [],
+        "rejectedPatchesAction": "ALLOW_AS_DEPENDENCY",
+        "createdTime": 1525194800.068,
+        "modifiedTime": 1525194800.068,
+        "description": "Default Patch Baseline for Ubuntu Provided by AWS.",
+        "operatingSystem": "UBUNTU",
+        "sources": []
+    },
+    "product": "Ubuntu20.04",
+    "patchGroup": "",
+    "instanceId": "i-12345678901234567",
+    "region": "us-east-1",
+    "operation": "Install",
+    "snapshotId": "aede1705-c3f0-411e-9ae8-03357a6d6b67",
+    "installOverrideList": "",
+    "baselineOverride": "",
+    "rebootOption": "RebootIfNeeded"
+}

@@ -21,7 +21,9 @@ common_startup_entrance.execute("os_selector", "PatchLinux", "{{SnapshotId}}",\
 [_common_startup_entrance_](patch-baseline-operations/common_startup_entrance.py) comes from the tar file and does the following:
 
 1. Fetch snapshot_info for the instance using [get_deployable_patch_snapshot_for_instance](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetDeployablePatchSnapshotForInstance.html)
-1. [Download](patch-baseline-operations/common_os_selector_methods.py#L282) the [patch baseline snapshot](patch-baseline-snapshot.json). The contents is similar to the output of the [get-patch-baseline](https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-cli-commands.html#patch-manager-cli-commands-get-patch-baseline) cli command.
+1. [Download](patch-baseline-operations/common_os_selector_methods.py#L282) the [patch baseline snapshot](patch-baseline-snapshot.json). The contents is similar to the output of the [get-patch-baseline](https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-cli-commands.html#patch-manager-cli-commands-get-patch-baseline) cli command. [Patch baselines](https://docs.aws.amazon.com/systems-manager/latest/userguide/about-patch-baselines.html) define which patches are automatically approved.
+1 [Save snapshot](patch-baseline-operations/common_os_selector_methods.py#L336) to [snapshot.json](patch-baseline-operations/snapshot.json).
+1. [main_entrance.py](patch-baseline-operations/main_entrance.py) is launched and passes it [snapshot.json](patch-baseline-operations/snapshot.json).
 
 .....TODO....
 
