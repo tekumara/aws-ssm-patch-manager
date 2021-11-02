@@ -1,7 +1,7 @@
 MAKEFLAGS += --warn-undefined-variables
 SHELL = /bin/bash -o pipefail
 .DEFAULT_GOAL := help
-.PHONY: help clean test outdated
+.PHONY: help
 
 ## display help message
 help:
@@ -22,3 +22,7 @@ patch-baseline-operations:
 	aws s3 cp s3://aws-ssm-us-east-1/patchbaselineoperations/linux/payloads/patch-baseline-operations-1.80.tar.gz /tmp/patch-baseline-operations-1.80.tar.gz
 	mkdir patch-baseline-operations
 	tar -xvf /tmp/patch-baseline-operations-1.80.tar.gz -C patch-baseline-operations
+
+## patch_snapshot_download_data
+patch_snapshot_download_data:
+	

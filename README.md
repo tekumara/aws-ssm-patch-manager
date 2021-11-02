@@ -2,14 +2,12 @@
 
 Reverse engineering AWS Systems Manager Patch Manager.
 
-## AWS-RunPatchBaseline PatchLinux Step
-
-The step:
+## PatchLinux.sh
 
 1. Checks prereqs are installed eg: python, apt
 1. Creates and changes to _/var/log/amazon/ssm/patch-baseline-operations/_
-1. Downloads and extracts the latest tar file from the region-specific bucket eg: _s3://aws-ssm-us-east-1/patchbaselineoperations/linux/payloads/patch-baseline-operations-1.80.tar.gz_
-1. Runs modules from tar file:
+1. Downloads and extracts the [patch-baseline-operations tar file](https://github.com/tekumara/aws-ssm-patch-manager/blob/main/Makefile#L22) from the region-specific bucket.
+1. Runs modules from the tar file:
 
 ```
 import common_startup_entrance
@@ -18,71 +16,12 @@ common_startup_entrance.execute("os_selector", "PatchLinux", "{{SnapshotId}}",\
         "{{RebootOption}}", "{{BaselineOverride}}")
 ```
 
-The things in `{{..}}` are the SSM document parameters and substituted before execution by SSM.
+`{{..}}` contain SSM document parameters that are substituted before execution by SSM.
 
-_common_startup_entrance_ comes from the tarfile and does the following:
+[_common_startup_entrance_](patch-baseline-operations/common_startup_entrance.py) comes from the tar file and does the following:
 
 1. Fetches snapshot_info for the instance using [get_deployable_patch_snapshot_for_instance](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetDeployablePatchSnapshotForInstance.html)
-1. Downloads the snapshot from `snapshot_info['SnapshotDownloadUrl']`. The snapshot contains a [patch baseline](https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-cli-commands.html#patch-manager-cli-commands-get-patch-baseline) eg:
-
-```
-{
-  "patchBaseline": {
-    "accountId": "075727635805",
-    "baselineId": "pb-0c7e89f711c3095f4",
-    "name": "AWS-UbuntuDefaultPatchBaseline",
-    "globalFilters": {
-      "filters": [
-        {
-          "key": "PRODUCT",
-          "values": [
-            "*"
-          ]
-        }
-      ]
-    },
-    "approvalRules": {
-      "rules": [
-        {
-          "filterGroup": {
-            "filters": [
-              {
-                "key": "PRIORITY",
-                "values": [
-                  "Required",
-                  "Important",
-                  "Standard",
-                  "Optional",
-                  "Extra"
-                ]
-              }
-            ]
-          },
-          "complianceLevel": "UNSPECIFIED",
-          "enableNonSecurity": false,
-          "approveAfterDays": 7,
-          "approveUntilDate": null
-        }
-      ]
-    },
-    "approvedPatches": [],
-    "approvedPatchesComplianceLevel": "UNSPECIFIED",
-    "approvedPatchesEnableNonSecurity": false,
-    "rejectedPatches": [],
-    "rejectedPatchesAction": "ALLOW_AS_DEPENDENCY",
-    "createdTime": 1525194800.068,
-    "modifiedTime": 1525194800.068,
-    "description": "Default Patch Baseline for Ubuntu Provided by AWS.",
-    "operatingSystem": "UBUNTU",
-    "sources": []
-  },
-  "patchGroup": null,
-  "patches": [],
-  "enableApplicationPatches": false,
-  "requiredFeatures": []
-}
-```
-
+1. [Downloads](patch-baseline-operations/common_os_selector_methods.py#L282) the [patch baseline snapshot](patch-baseline-snapshot.json). The contents is similar to the output of the [get-patch-baseline](https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-cli-commands.html#patch-manager-cli-commands-get-patch-baseline) cli command.
 1. Saves patch state (the install state of packages in the baseline) to _/var/log/amazon/ssm/patch-configuration/patch-states-configuration.json_
 1. Generates a patch compliance summary, eg:
 

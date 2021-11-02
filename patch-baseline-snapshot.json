@@ -1,0 +1,55 @@
+{
+    "patchBaseline": {
+        "accountId": "075727635805",
+        "baselineId": "pb-0c7e89f711c3095f4",
+        "name": "AWS-UbuntuDefaultPatchBaseline",
+        "globalFilters": {
+            "filters": [
+                {
+                    "key": "PRODUCT",
+                    "values": [
+                        "*"
+                    ]
+                }
+            ]
+        },
+        "approvalRules": {
+            "rules": [
+                {
+                    "filterGroup": {
+                        "filters": [
+                            {
+                                "key": "PRIORITY",
+                                "values": [
+                                    "Required",
+                                    "Important",
+                                    "Standard",
+                                    "Optional",
+                                    "Extra"
+                                ]
+                            }
+                        ]
+                    },
+                    "complianceLevel": "UNSPECIFIED",
+                    "enableNonSecurity": false,
+                    "approveAfterDays": 7,
+                    "approveUntilDate": null
+                }
+            ]
+        },
+        "approvedPatches": [],
+        "approvedPatchesComplianceLevel": "UNSPECIFIED",
+        "approvedPatchesEnableNonSecurity": false,
+        "rejectedPatches": [],
+        "rejectedPatchesAction": "ALLOW_AS_DEPENDENCY",
+        "createdTime": 1525194800.068000000,
+        "modifiedTime": 1525194800.068000000,
+        "description": "Default Patch Baseline for Ubuntu Provided by AWS.",
+        "operatingSystem": "UBUNTU",
+        "sources": []
+    },
+    "patchGroup": null,
+    "patches": [],
+    "enableApplicationPatches": false,
+    "requiredFeatures": []
+}
